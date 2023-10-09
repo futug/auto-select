@@ -1,0 +1,518 @@
+.header {
+  padding: 39px 0 44px 0;
+  position: relative;
+}
+@media (max-width: 480px) {
+  .header {
+    padding: 10px 15px 10px 15px;
+  }
+}
+.header__nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.header__left-side, .header__right-side {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 65px;
+}
+.header__logo a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.header__logo img {
+  width: 183px;
+  height: 61px;
+}
+@media (max-width: 680px) {
+  .header__logo img {
+    width: 124px;
+    height: 41px;
+  }
+}
+.header__city {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 17px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.header__city-descr {
+  max-width: 186px;
+  font-family: "Mont-SemiBold";
+  font-size: 14px;
+  color: var(--secondary-text-dark);
+}
+.header__city-descr span {
+  color: var(--primary-accent-color);
+}
+@media (max-width: 1130px) {
+  .header__city {
+    display: none;
+  }
+}
+.header__contacts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.header__contacts-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 52px;
+  height: 55px;
+  border-radius: 8px;
+  background-color: #f0f0f0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-decoration: none;
+}
+@media (max-width: 1130px) {
+  .header__contacts {
+    display: none;
+  }
+}
+.header__phone {
+  font-family: "RoadRadio";
+  font-size: 28px;
+  text-decoration: none;
+}
+.header__phone a {
+  color: var(--primary-text-dark);
+  text-decoration: none;
+}
+@media (max-width: 1130px) {
+  .header__phone {
+    display: none;
+  }
+}
+.header__burger-menu {
+  display: none;
+}
+@media (max-width: 1130px) {
+  .header__burger-menu {
+    display: block;
+    width: 59px;
+    height: 48px;
+    background-color: var(--primary-text-dark);
+    border-radius: 5px;
+    padding: 12px 13px;
+  }
+}
+.header__burger-item {
+  width: 30px;
+  height: 2px;
+  background-color: var(--secondary-text-light);
+  border-radius: 1px;
+  margin-bottom: 9px;
+}
+.header__burger-item:nth-child(2) {
+  width: 27px;
+}
+.header__burger-item:last-child {
+  width: 16px;
+}
+.header__nav-mobile {
+  background-color: var(--primary-text-dark);
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  margin-top: 10px;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+  opacity: 0;
+  z-index: 99;
+}
+.header__nav-mobile--active {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  opacity: 1;
+}
+.header__city-mobile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+  margin-top: 48px;
+}
+.header__city-mobile-descr {
+  text-align: center;
+  max-width: 160px;
+  font-family: "Mont-SemiBold";
+  font-size: 12px;
+  color: var(--secondary-text-light);
+}
+.header__city-mobile-descr span {
+  color: var(--primary-accent-color);
+}
+.header__contacts-mobile {
+  margin-top: 37px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+}
+.header__contacts-mobile-link {
+  width: 52px;
+  height: 55px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 8px;
+  border: 1px solid var(--secondary-text-light);
+}
+.header__phone-mobile {
+  font-family: "RoadRadio-Bold";
+  font-size: 28px;
+  margin-top: 37px;
+  margin-bottom: 73px;
+}
+.header__phone-mobile a {
+  text-decoration: none;
+  color: var(--secondary-text-light);
+}
+@media (max-width: 375px) {
+  .header__phone-mobile {
+    font-size: 22px;
+  }
+}
+.header__close {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 12px;
+  right: 14px;
+}
+.header__close-item {
+  width: 31px;
+  height: 2px;
+  background-color: var(--secondary-text-light);
+  border-radius: 1px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+.header__close-item:nth-child(2) {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+
+.hero {
+  width: 100%;
+  border-radius: 66px;
+  overflow: hidden;
+  color: var(--secondary-text-light);
+  background: url("./img/hero-bg.webp") no-repeat center/cover, #f8f8f8;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 39px;
+  padding-bottom: 34px;
+}
+@supports not (background-image: url("./img/hero-bg.webp")) {
+  .hero {
+    background: url("./img/hero-bg.jpg") no-repeat center/cover, #f8f8f8;
+  }
+}
+@media (max-width: 768px) {
+  .hero {
+    background: url("./img/hero-bg-mobile.webp") no-repeat center/cover, #f8f8f8;
+    border-radius: 31px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  @supports not (background-image: url("./img/hero-bg-mobile.webp")) {
+    .hero {
+      background: url("./img/hero-bg.jpg") no-repeat center/cover, #f8f8f8;
+    }
+  }
+}
+.hero__content-team {
+  width: 240px;
+  height: 75px;
+  margin-top: 68px;
+}
+@media (max-width: 768px) {
+  .hero__content-team {
+    width: 170px;
+    height: 55px;
+    margin-top: 0;
+  }
+}
+.hero__content-descr {
+  margin-top: 62px;
+  font-family: "Mont-Regular";
+  font-size: 18px;
+  max-width: 344px;
+  position: relative;
+}
+.hero__content-descr::before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 39px;
+  position: absolute;
+  bottom: 115%;
+  left: 33px;
+  background-color: var(--secondary-text-light);
+}
+@media (max-width: 768px) {
+  .hero__content-descr::before {
+    display: none;
+  }
+}
+.hero__content-descr span {
+  font-family: "Mont-SemiBold";
+}
+@media (max-width: 768px) {
+  .hero__content-descr {
+    font-size: 12px;
+    margin-top: 14px;
+    color: var(--primary-text-dark);
+    max-width: 320px;
+  }
+  .hero__content-descr br {
+    display: none;
+  }
+}
+.hero__content-title {
+  font-family: "RoadRadio-Bold";
+  font-size: 59px;
+  max-width: 667px;
+  line-height: 93%;
+  margin-top: 112px;
+}
+@media (max-width: 768px) {
+  .hero__content-title {
+    font-size: 29px;
+    margin-top: 23px;
+    color: var(--primary-text-dark);
+  }
+  .hero__content-title span {
+    color: var(--primary-accent-color);
+  }
+}
+.hero__content-cta {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 28px;
+  margin-bottom: 108px;
+  gap: 18px;
+}
+@media (max-width: 768px) {
+  .hero__content-cta {
+    margin-top: 286px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin-bottom: 0;
+    gap: 10px;
+  }
+}
+.hero__content-button {
+  display: block;
+  background: var(--primary-accent-color);
+  -webkit-box-shadow: inset 0px 0px 51px 6px #ff9674;
+          box-shadow: inset 0px 0px 51px 6px #ff9674;
+  border-radius: 5px;
+  padding: 28px 36px;
+  font-family: "RoadRadio";
+  font-size: 16px;
+  line-height: 145%;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  z-index: 2;
+}
+.hero__content-button::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 28px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 172px;
+  height: 80px;
+  background: #f15a29;
+  -webkit-filter: blur(46px);
+          filter: blur(46px);
+  border-radius: 5px;
+  z-index: -3;
+}
+.hero__content-advantages {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 2px;
+}
+.hero__content-advantages-icon {
+  width: 24px;
+  height: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+.hero__content-advantages-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 12px;
+  font-family: "Mont-Regular";
+  font-size: 18px;
+}
+@media (max-width: 768px) {
+  .hero__content-advantages {
+    display: none;
+  }
+}
+.hero__content-sub {
+  display: none;
+  max-width: 127px;
+  text-align: center;
+  font-family: "Mont-SemiBold";
+  font-size: 14px;
+}
+.hero__content-sub span {
+  font-size: 9px;
+}
+@media (max-width: 768px) {
+  .hero__content-sub {
+    display: block;
+  }
+}
+.hero__content-advantages-mobile {
+  display: none;
+}
+@media (max-width: 768px) {
+  .hero__content-advantages-mobile {
+    display: block;
+  }
+}
+.hero__content-advantages-mobile-descr {
+  text-align: center;
+  max-width: 148px;
+  font-family: "Mont-SemiBold";
+  font-size: 14px;
+  line-height: 120%;
+  margin-top: 5px;
+}
+.hero__content-icons-mobile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 5px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.hero__content-icon-mobile {
+  width: 22px;
+  height: 22px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(4.43193px);
+          backdrop-filter: blur(4.43193px);
+  border-radius: 3px;
+}
+
+.quiz {
+  height: 100vh;
+}
+.quiz__content {
+  margin-top: 67px;
+}

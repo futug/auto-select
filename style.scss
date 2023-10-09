@@ -1,0 +1,448 @@
+.header {
+    padding: 39px 0 44px 0;
+    position: relative;
+
+    @media (max-width: 480px) {
+        padding: 10px 15px 10px 15px;
+    }
+
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__left-side,
+    &__right-side {
+        display: flex;
+        align-items: center;
+        gap: 65px;
+    }
+
+    &__logo {
+        & a {
+            display: flex;
+            align-items: center;
+        }
+        & img {
+            width: 183px;
+            height: 61px;
+
+            @media (max-width: 680px) {
+                width: 124px;
+                height: 41px;
+            }
+        }
+    }
+    &__city {
+        display: flex;
+        gap: 17px;
+        align-items: center;
+
+        &-descr {
+            max-width: 186px;
+            font-family: "Mont-SemiBold";
+            font-size: 14px;
+            color: var(--secondary-text-dark);
+
+            & span {
+                color: var(--primary-accent-color);
+            }
+        }
+
+        @media (max-width: 1130px) {
+            display: none;
+        }
+    }
+
+    &__contacts {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+
+        &-link {
+            display: flex;
+            width: 52px;
+            height: 55px;
+            border-radius: 8px;
+            background-color: #f0f0f0;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        @media (max-width: 1130px) {
+            display: none;
+        }
+    }
+
+    &__phone {
+        font-family: "RoadRadio";
+        font-size: 28px;
+        text-decoration: none;
+
+        & a {
+            color: var(--primary-text-dark);
+            text-decoration: none;
+        }
+
+        @media (max-width: 1130px) {
+            display: none;
+        }
+    }
+
+    &__burger-menu {
+        display: none;
+
+        @media (max-width: 1130px) {
+            display: block;
+            width: 59px;
+            height: 48px;
+            background-color: var(--primary-text-dark);
+            border-radius: 5px;
+            padding: 12px 13px;
+        }
+    }
+
+    &__burger-item {
+        width: 30px;
+        height: 2px;
+        background-color: var(--secondary-text-light);
+        border-radius: 1px;
+        margin-bottom: 9px;
+
+        &:nth-child(2) {
+            width: 27px;
+        }
+
+        &:last-child {
+            width: 16px;
+        }
+    }
+
+    &__nav-mobile {
+        background-color: var(--primary-text-dark);
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 0;
+        margin-top: 10px;
+        transform: scale(0);
+        transform-origin: top right;
+        transition: transform 0.3s ease-in-out;
+        opacity: 0;
+        z-index: 99;
+
+        &--active {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    &__city-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-top: 48px;
+    }
+
+    &__city-mobile-descr {
+        text-align: center;
+        max-width: 160px;
+        font-family: "Mont-SemiBold";
+        font-size: 12px;
+        color: var(--secondary-text-light);
+
+        & span {
+            color: var(--primary-accent-color);
+        }
+    }
+
+    &__contacts-mobile {
+        margin-top: 37px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        &-link {
+            width: 52px;
+            height: 55px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            border: 1px solid var(--secondary-text-light);
+        }
+    }
+
+    &__phone-mobile {
+        font-family: "RoadRadio-Bold";
+        font-size: 28px;
+        margin-top: 37px;
+        margin-bottom: 73px;
+
+        & a {
+            text-decoration: none;
+            color: var(--secondary-text-light);
+        }
+
+        @media (max-width: 375px) {
+            font-size: 22px;
+        }
+    }
+
+    &__close {
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: 12px;
+        right: 14px;
+
+        &-item {
+            width: 31px;
+            height: 2px;
+            background-color: var(--secondary-text-light);
+            border-radius: 1px;
+            transform: rotate(45deg);
+            position: absolute;
+            top: 50%;
+            left: 0;
+
+            &:nth-child(2) {
+                transform: rotate(-45deg);
+            }
+        }
+    }
+}
+
+.hero {
+    width: 100%;
+    border-radius: 66px;
+    overflow: hidden;
+    color: var(--secondary-text-light);
+    background: url("./img/hero-bg.webp") no-repeat center/ cover, #f8f8f8;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 39px;
+    padding-bottom: 34px;
+
+    @supports not (background-image: url("./img/hero-bg.webp")) {
+        background: url("./img/hero-bg.jpg") no-repeat center/ cover, #f8f8f8;
+    }
+
+    @media (max-width: 768px) {
+        background: url("./img/hero-bg-mobile.webp") no-repeat center/ cover, #f8f8f8;
+        border-radius: 31px;
+        padding-left: 50px;
+        padding-right: 50px;
+
+        @supports not (background-image: url("./img/hero-bg-mobile.webp")) {
+            background: url("./img/hero-bg.jpg") no-repeat center/ cover, #f8f8f8;
+        }
+    }
+
+    &__content {
+        &-team {
+            width: 240px;
+            height: 75px;
+            margin-top: 68px;
+
+            @media (max-width: 768px) {
+                width: 170px;
+                height: 55px;
+                margin-top: 0;
+            }
+        }
+
+        &-descr {
+            margin-top: 62px;
+            font-family: "Mont-Regular";
+            font-size: 18px;
+            max-width: 344px;
+            position: relative;
+
+            &::before {
+                content: "";
+                display: block;
+                width: 1px;
+                height: 39px;
+                position: absolute;
+                bottom: 115%;
+                left: 33px;
+                background-color: var(--secondary-text-light);
+
+                @media (max-width: 768px) {
+                    display: none;
+                }
+            }
+
+            & span {
+                font-family: "Mont-SemiBold";
+            }
+
+            @media (max-width: 768px) {
+                font-size: 12px;
+                margin-top: 14px;
+                color: var(--primary-text-dark);
+                max-width: 320px;
+                & br {
+                    display: none;
+                }
+            }
+        }
+
+        &-title {
+            font-family: "RoadRadio-Bold";
+            font-size: 59px;
+            max-width: 667px;
+            line-height: 93%;
+            margin-top: 112px;
+
+            @media (max-width: 768px) {
+                font-size: 29px;
+                margin-top: 23px;
+                color: var(--primary-text-dark);
+
+                & span {
+                    color: var(--primary-accent-color);
+                }
+            }
+        }
+    }
+
+    &__content-cta {
+        display: flex;
+        align-items: center;
+        margin-top: 28px;
+        margin-bottom: 108px;
+        gap: 18px;
+
+        @media (max-width: 768px) {
+            margin-top: 286px;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0;
+            gap: 10px;
+        }
+    }
+
+    &__content-button {
+        display: block;
+        background: var(--primary-accent-color);
+        box-shadow: inset 0px 0px 51px 6px #ff9674;
+        border-radius: 5px;
+        padding: 28px 36px;
+        font-family: "RoadRadio";
+        font-size: 16px;
+        line-height: 145%;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+        z-index: 2;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 28px;
+            transform: translateX(-50%);
+            width: 172px;
+            height: 80px;
+            background: #f15a29;
+            filter: blur(46px);
+            border-radius: 5px;
+            z-index: -3;
+        }
+    }
+
+    &__content-advantages {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        &-icon {
+            width: 24px;
+            height: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        &-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: "Mont-Regular";
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
+
+    &__content-sub {
+        display: none;
+        max-width: 127px;
+        text-align: center;
+        font-family: "Mont-SemiBold";
+        font-size: 14px;
+
+        & span {
+            font-size: 9px;
+        }
+
+        @media (max-width: 768px) {
+            display: block;
+        }
+    }
+
+    &__content-advantages-mobile {
+        display: none;
+
+        @media (max-width: 768px) {
+            display: block;
+        }
+        &-descr {
+            text-align: center;
+            max-width: 148px;
+            font-family: "Mont-SemiBold";
+            font-size: 14px;
+            line-height: 120%;
+            margin-top: 5px;
+        }
+    }
+
+    &__content-icons-mobile {
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+    }
+
+    &__content-icon-mobile {
+        width: 22px;
+        height: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(4.43193px);
+        border-radius: 3px;
+    }
+}
+
+.quiz {
+    height: 100vh;
+    &__content {
+        margin-top: 67px;
+    }
+}
