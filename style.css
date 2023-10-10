@@ -818,9 +818,12 @@
   width: 168px;
   height: 152px;
   border-radius: 10px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
 .quiz__right-img--active {
-  border: 2px solid var(--primary-accent-color);
+  border: 3px solid var(--primary-accent-color);
 }
 .quiz__right-descr {
   max-width: 148px;
@@ -829,6 +832,29 @@
   font-size: 12px;
   line-height: 145%;
   text-align: center;
+}
+
+.quiz__first-par {
+  margin-top: -30px;
+  font-family: "Mont-Regular";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 147.5%;
+  opacity: 0.5;
+  max-width: 224px;
+  position: relative;
+  z-index: -2;
+}
+
+.quiz__second-par {
+  font-family: "Mont-Regular";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 147.5%;
+  opacity: 0.5;
+  z-index: -2;
 }
 
 .fake__select {
@@ -938,6 +964,7 @@
   outline: none;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  margin-top: -30px;
 }
 .quiz__input-answer::-webkit-input-placeholder {
   font-family: "Mont-Regular";
@@ -982,4 +1009,203 @@
 .quiz__input-answer:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+
+.final-sub {
+  margin-top: 147px;
+}
+
+.final-title {
+  margin-top: 29px;
+  max-width: 559px;
+  font-size: 32px;
+}
+
+.quiz__content-final-input {
+  max-width: 505px;
+  height: 126px;
+  background: #ffffff;
+  border: 3.25px solid #ffffff;
+  -webkit-box-shadow: inset 0px 0px 32.5px rgba(0, 0, 0, 0.14);
+          box-shadow: inset 0px 0px 32.5px rgba(0, 0, 0, 0.14);
+  border-radius: 8.125px;
+  position: relative;
+  margin-top: 39px;
+}
+.quiz__content-final-input input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  text-align: center;
+}
+.quiz__content-final-input input:focus + p {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+.quiz__content-final-input input:not(:valid) + p {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+.quiz__content-final-input p {
+  font-family: "Mont-Light";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+  color: #1c1c21;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+}
+.quiz__content-final-input p span {
+  color: #25cd45;
+}
+
+.quiz__content-send {
+  background: #f15a29;
+  -webkit-box-shadow: inset 0px 0px 51px 6px #ff9674;
+          box-shadow: inset 0px 0px 51px 6px #ff9674;
+  border-radius: 5px;
+  border: none;
+  font-family: "Mont-Bold";
+  font-style: normal;
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 130%;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  padding: 30px 120px;
+  max-width: 505px;
+  max-height: 126px;
+  display: block;
+  margin-top: 20px;
+}
+.quiz__content-send span {
+  display: block;
+  max-width: 300px;
+}
+
+.quiz__content-gift-preview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #182735;
+  border-radius: 10px;
+  max-width: 300px;
+  padding: 11px 19px;
+  gap: 19px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 20px;
+  margin-bottom: 118px;
+}
+.quiz__content-gift-preview img {
+  max-width: 46px;
+  max-height: 49px;
+  border-radius: 10px;
+  border: 3px solid var(--primary-accent-color);
+}
+.quiz__content-gift-preview p {
+  font-family: "Mont-SemiBold";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 145%;
+  color: var(--secondary-text-light);
+}
+.quiz__content-gift-preview p:last-child {
+  color: var(--primary-accent-color);
+}
+
+.quiz__content-final {
+  display: none;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+}
+.popup--active {
+  pointer-events: all;
+  opacity: 1;
+}
+.popup__content {
+  padding: 1rem;
+  background-color: #fff;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  opacity: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition-delay: 0.9s;
+          transition-delay: 0.9s;
+}
+.popup__content--active {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  opacity: 1;
+}
+.popup__content-text {
+  font-family: "Mont-SemiBold";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 145%;
+  color: var(--primary-text-dark);
+  margin-bottom: 20px;
+}
+.popup__content-btn {
+  display: block;
+  background: var(--primary-accent-color);
+  -webkit-box-shadow: inset 0px 0px 51px 6px #ff9674;
+          box-shadow: inset 0px 0px 51px 6px #ff9674;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-family: "RoadRadio";
+  font-size: 14px;
+  line-height: 145%;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--secondary-text-light);
+  position: relative;
+  z-index: 2;
+  border: none;
+  cursor: pointer;
 }

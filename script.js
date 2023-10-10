@@ -10,13 +10,14 @@ close.addEventListener("click", () => {
 
 const question = document.querySelector(".quiz__right-question");
 const answers = document.querySelector(".quiz__right-answers");
-const nextBtn = document.querySelector(".quiz__right-next ");
-const prevBtn = document.querySelector(".quiz__right-prev ");
+const nextBtn = document.querySelector(".quiz__right-next");
+const prevBtn = document.querySelector(".quiz__right-prev");
 let questionIndex = 0;
 const answersTotal = {};
 const currentStep = document.querySelector(".quiz__current-step");
 const totalSteps = document.querySelector(".quiz__total-steps");
 const quizProgress = document.querySelector(".quiz__least-questions");
+let giftImage = "";
 
 const questionsVariants = [
     {
@@ -78,11 +79,26 @@ const questionsVariants = [
 
 totalSteps.textContent = questionsVariants.length - 1;
 
+// function updateNextButtonState() {
+//     const checkboxes = answers.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked');
+//     const selectedCheckboxes = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
+
+//     nextBtn.disabled = selectedCheckboxes.length === 0;
+//     prevBtn.disabled = questionIndex === 0;
+// }
+
 function updateNextButtonState() {
     const checkboxes = answers.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked');
     const selectedCheckboxes = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
 
-    nextBtn.disabled = selectedCheckboxes.length === 0;
+    if (questionIndex === questionsVariants.length - 1) {
+        // Если это последний вопрос, и выбран подарок, то кнопка "Далее" доступна
+        nextBtn.disabled = selectedCheckboxes.length === 0 && !answersTotal[questionsVariants[questionIndex].questionTitle];
+    } else {
+        // Для остальных вопросов
+        nextBtn.disabled = selectedCheckboxes.length === 0;
+    }
+
     prevBtn.disabled = questionIndex === 0;
 }
 
@@ -92,6 +108,7 @@ function displayNextQuestion() {
     if (!currentQuestion) {
         console.log("Ответы:", answersTotal);
         nextBtn.setAttribute("disabled", "true");
+        finalInitial();
         return;
     }
 
@@ -165,6 +182,17 @@ function displayNextQuestion() {
             answersTotal[currentQuestion.questionTitle] = event.target.value;
             updateNextButtonState();
         });
+
+        const firstParagraph = document.createElement("p");
+        firstParagraph.textContent = "Вы можете выбрать несколько интерисующих марок";
+        firstParagraph.classList.add("quiz__first-par");
+        answers.appendChild(firstParagraph);
+
+        const secondParagraph = document.createElement("p");
+        secondParagraph.textContent = "Если вы уже определились с конкретной моделью авто, впишите ее сюда:";
+        secondParagraph.classList.add("quiz__second-par");
+        answers.appendChild(secondParagraph);
+
         answers.appendChild(textInput);
 
         answerArea.style.gridTemplateColumns = "1fr";
@@ -185,17 +213,26 @@ function displayNextQuestion() {
             imageDiv.appendChild(img);
             imageDiv.appendChild(descrP);
             answers.appendChild(imageDiv);
-        });
+            img.addEventListener("click", () => {
+                const allImages = document.querySelectorAll(".quiz__right-img");
 
-        function selectGift() {
-            const gift = document.querySelector(".quiz__right-img");
-            gift.addEventListener("click", () => {
-                gift.classList.toggle("quiz__right-img--active");
+                allImages.forEach((image) => {
+                    image.classList.remove("quiz__right-img--active");
+                    giftImage = imageUrl;
+                });
+                img.classList.add("quiz__right-img--active");
+
+                // Добавляем выбранный подарок в объект ответов
+                answersTotal[currentQuestion.questionTitle] = [currentQuestion.descrs[answerIndex]];
+
+                // Проверяем состояние кнопки "Далее"
+                updateNextButtonState();
             });
-        }
-
-        selectGift();
+        });
+        const giftBlock = document.querySelector(".quiz__right-gift-descr");
+        giftBlock.style.display = "none";
         answerArea.style.gridTemplateColumns = "repeat(3, 1fr)";
+        answerArea.style.gap = "20px";
     } else {
         currentQuestion.answers.forEach((answerText, answerIndex) => {
             const answerId = `answer_${answerIndex + 1}`;
@@ -265,7 +302,12 @@ function progressBar() {
     const fullWidth = progress.offsetWidth;
     const progressInner = document.querySelector(".quiz__right-filler");
     const progressFraction = fullWidth / 5;
-    progressInner.style.width = `${progressFraction * index}px`;
+
+    if (index === questionsVariants.length) {
+        progressInner.style.width = `${fullWidth}px`;
+    } else {
+        progressInner.style.width = `${progressFraction * index}px`;
+    }
 }
 
 displayNextQuestion();
@@ -290,3 +332,80 @@ function outerClick(event) {
 }
 
 document.addEventListener("click", outerClick);
+
+function finalInitial() {
+    const quizArea = document.querySelector(".quiz__content-quiz");
+    const quizFinal = document.querySelector(".quiz__content-final");
+    const giftPreview = document.querySelector(".quiz__content-gift-preview");
+    const giftSelected = giftPreview.querySelector("img");
+
+    quizArea.style.display = "none";
+    quizFinal.style.display = "block";
+    const quizBg = document.querySelector(".quiz__content");
+    quizBg.style.backgroundImage = 'url("./img/contacts-bg.jpg")';
+    quizBg.style.backgroundSize = "cover";
+    quizBg.style.backgroundPosition = "center";
+    quizBg.style.backgroundRepeat = "no-repeat";
+    const gift = document.querySelector(".specify__gift");
+
+    const lastAnswerArray = answersTotal[questionsVariants[5].questionTitle];
+    const lastAnswer = lastAnswerArray ? lastAnswerArray[lastAnswerArray.length - 1] : "";
+    gift.textContent = lastAnswer;
+    giftSelected.src = giftImage;
+}
+
+const sendBtn = document.querySelector(".quiz__content-send");
+
+sendBtn.addEventListener("click", () => {
+    const inputBlock = document.querySelector(".quiz__content-final-input");
+    const input = inputBlock.querySelector("input");
+    const phoneNumber = input.value;
+
+    const orderData = {
+        email: "savazkitim@gmail.com",
+        present: answersTotal["Выберите подарок"],
+        time: answersTotal["Как скоро вы планируете покупку автомобиля?"],
+        mark: answersTotal["Какие марки?"],
+        amount: answersTotal["Какой ваш бюджет на покупку автомобиля?"],
+        mileAge: answersTotal["Пробег"],
+        phone: phoneNumber,
+        transmition: answersTotal["Трансмиссия"],
+    };
+
+    console.log(orderData);
+    // const finalData = { ...orderData };
+
+    // sendObj(orderData);
+});
+
+async function sendObj(dataToSend) {
+    try {
+        const response = await fetch("https://futug-mailer.vercel.app/api/send", {
+            method: "POST",
+            body: JSON.stringify(dataToSend),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            },
+        });
+
+        if (response.ok) {
+            const popupWrapper = document.querySelector(".popup");
+            const popupModal = document.querySelector(".popup__content");
+
+            popupWrapper.classList.add("popup--active");
+            popupModal.classList.add("popup__content--active");
+
+            const closeBtn = document.querySelector(".popup__content-btn");
+            closeBtn.addEventListener("click", () => {
+                popupWrapper.classList.remove("popup--active");
+                popupModal.classList.remove("popup__content--active");
+                location.reload();
+            });
+            console.log("Данные успешно отправлены.");
+        } else {
+            console.error("Ошибка при отправке данных. Статус:", response.status);
+        }
+    } catch (error) {
+        console.error("Произошла ошибка:", error);
+    }
+}
