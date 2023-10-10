@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .header {
   padding: 39px 0 44px 0;
   position: relative;
@@ -626,6 +627,18 @@
 .quiz__content-right {
   background-color: #d8d8d8;
 }
+.quiz__right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
 .quiz__right-top {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -682,6 +695,8 @@
   padding: 10px;
   border-radius: 10px;
   background-color: var(--primary-accent-color);
+  max-width: 40px;
+  max-height: 40px;
 }
 .quiz__right-gift-descr {
   font-family: "Mont-SemiBold";
@@ -704,6 +719,7 @@
   grid-template-columns: repeat(3, 1fr);
   row-gap: 43px;
   margin-top: 50px;
+  position: relative;
 }
 .quiz__right-answers label {
   font-family: "Mont-Regular";
@@ -761,7 +777,8 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-top: 221px;
+  margin-top: auto;
+  margin-bottom: 0;
 }
 .quiz__right-prev, .quiz__right-next {
   background-color: transparent;
@@ -782,4 +799,187 @@
 }
 .quiz__right-prev:disabled, .quiz__right-next:disabled {
   background-color: #efefef;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.quiz__right-imagewrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.quiz__right-img {
+  width: 168px;
+  height: 152px;
+  border-radius: 10px;
+}
+.quiz__right-img--active {
+  border: 2px solid var(--primary-accent-color);
+}
+.quiz__right-descr {
+  max-width: 148px;
+  margin-top: 14px;
+  font-family: "Mont-SemiBold";
+  font-size: 12px;
+  line-height: 145%;
+  text-align: center;
+}
+
+.fake__select {
+  height: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  width: 311px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 14px;
+  position: absolute;
+  top: 78px;
+  background: #fff;
+  padding-left: 27px;
+  -webkit-transform-origin: top center;
+          transform-origin: top center;
+  overflow-y: scroll;
+  -webkit-box-shadow: 0px 4px 179px rgba(24, 39, 53, 0.14);
+          box-shadow: 0px 4px 179px rgba(24, 39, 53, 0.14);
+  border-radius: 0 5px;
+}
+.fake__select--active {
+  height: 234px;
+}
+.fake__select label {
+  font-size: 18px;
+}
+
+.fake__select::-webkit-scrollbar {
+  width: 8px;
+  background-color: #e8e8e8;
+  border-radius: 5px;
+}
+
+.fake__select::-webkit-scrollbar-thumb {
+  width: 8px;
+  background-color: var(--primary-accent-color);
+  border-radius: 5px;
+}
+
+.fake__select-preview {
+  max-width: 311px;
+  height: 78px;
+  background: #ffffff;
+  border: 2px solid rgba(24, 39, 53, 0.03);
+  -webkit-box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.14);
+          box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.14);
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+}
+.fake__select-preview::before {
+  content: attr(data-placeholder);
+  position: absolute;
+  font-family: "Mont-Regular";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 147.5%;
+  color: rgba(24, 39, 53, 0.38);
+  top: 50%;
+  left: 27px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.fake__select-preview::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 27px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 9px;
+  height: 14px;
+  background: url("./img/svg/chevron.svg") no-repeat center/contain;
+}
+.fake__select-preview--active {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border-radius: 5px 0;
+  z-index: 99;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.fake__select-preview--active::before {
+  content: "Выберите марку";
+}
+.fake__select-preview--active::after {
+  -webkit-transform: translateY(-50%) rotate(180deg);
+          transform: translateY(-50%) rotate(180deg);
+}
+
+.quiz__input-answer {
+  width: 311px;
+  background: #ffffff;
+  border: 2px solid rgba(24, 39, 53, 0.03);
+  -webkit-box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.14);
+          box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.14);
+  border-radius: 5px;
+  padding: 26px;
+  outline: none;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.quiz__input-answer::-webkit-input-placeholder {
+  font-family: "Mont-Regular";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 147.5%;
+  color: rgba(24, 39, 53, 0.38);
+}
+.quiz__input-answer::-moz-placeholder {
+  font-family: "Mont-Regular";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 147.5%;
+  color: rgba(24, 39, 53, 0.38);
+}
+.quiz__input-answer:-ms-input-placeholder {
+  font-family: "Mont-Regular";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 147.5%;
+  color: rgba(24, 39, 53, 0.38);
+}
+.quiz__input-answer::-ms-input-placeholder {
+  font-family: "Mont-Regular";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 147.5%;
+  color: rgba(24, 39, 53, 0.38);
+}
+.quiz__input-answer::placeholder {
+  font-family: "Mont-Regular";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 147.5%;
+  color: rgba(24, 39, 53, 0.38);
+}
+.quiz__input-answer:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }

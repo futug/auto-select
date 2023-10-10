@@ -556,6 +556,9 @@
     }
 
     &__right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         &-top {
             display: flex;
             align-items: center;
@@ -605,6 +608,8 @@
             padding: 10px;
             border-radius: 10px;
             background-color: var(--primary-accent-color);
+            max-width: 40px;
+            max-height: 40px;
         }
 
         &-gift-descr {
@@ -629,6 +634,7 @@
             grid-template-columns: repeat(3, 1fr);
             row-gap: 43px;
             margin-top: 50px;
+            position: relative;
 
             & label {
                 font-family: "Mont-Regular";
@@ -680,7 +686,8 @@
         &-bottom {
             display: flex;
             justify-content: space-between;
-            margin-top: 221px;
+            margin-top: auto;
+            margin-bottom: 0;
         }
 
         &-prev,
@@ -703,7 +710,146 @@
 
             &:disabled {
                 background-color: #efefef;
+                box-shadow: none;
             }
         }
+
+        &-imagewrap {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        &-img {
+            width: 168px;
+            height: 152px;
+            border-radius: 10px;
+
+            &--active {
+                border: 2px solid var(--primary-accent-color);
+            }
+        }
+
+        &-descr {
+            max-width: 148px;
+            margin-top: 14px;
+            font-family: "Mont-SemiBold";
+            font-size: 12px;
+            line-height: 145%;
+            text-align: center;
+        }
+    }
+}
+
+.fake__select {
+    height: 0;
+    transition: all 0.3s ease-in-out;
+    width: 311px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: absolute;
+    top: 78px;
+    background: #fff;
+
+    padding-left: 27px;
+    transform-origin: top center;
+    overflow-y: scroll;
+    box-shadow: 0px 4px 179px rgba(24, 39, 53, 0.14);
+    border-radius: 0 5px;
+
+    &--active {
+        height: 234px;
+    }
+
+    & label {
+        font-size: 18px;
+    }
+}
+
+.fake__select::-webkit-scrollbar {
+    width: 8px;
+    background-color: #e8e8e8;
+    border-radius: 5px;
+}
+
+.fake__select::-webkit-scrollbar-thumb {
+    width: 8px;
+    background-color: var(--primary-accent-color);
+    border-radius: 5px;
+}
+
+.fake__select-preview {
+    max-width: 311px;
+    height: 78px;
+    background: #ffffff;
+    border: 2px solid rgba(24, 39, 53, 0.03);
+    box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.14);
+    border-radius: 5px;
+    position: relative;
+    cursor: pointer;
+
+    &::before {
+        content: attr(data-placeholder);
+        position: absolute;
+        font-family: "Mont-Regular";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 147.5%;
+        color: rgba(24, 39, 53, 0.38);
+        top: 50%;
+        left: 27px;
+        transform: translateY(-50%);
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 27px;
+        transform: translateY(-50%);
+        width: 9px;
+        height: 14px;
+        background: url("./img/svg/chevron.svg") no-repeat center/contain;
+    }
+
+    &--active {
+        border: none;
+        box-shadow: none;
+        border-radius: 5px 0;
+        z-index: 99;
+        transition: all 0.3s ease-in-out;
+
+        &::before {
+            content: "Выберите марку";
+        }
+
+        &::after {
+            transform: translateY(-50%) rotate(180deg);
+        }
+    }
+}
+
+.quiz__input-answer {
+    width: 311px;
+    background: #ffffff;
+    border: 2px solid rgba(24, 39, 53, 0.03);
+    box-shadow: inset 0px 0px 20px rgba(0, 0, 0, 0.14);
+    border-radius: 5px;
+    padding: 26px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+
+    &::placeholder {
+        font-family: "Mont-Regular";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 147.5%;
+        color: rgba(24, 39, 53, 0.38);
+    }
+
+    &:focus {
+        box-shadow: none;
     }
 }

@@ -8,10 +8,11 @@ close.addEventListener("click", () => {
     nav.classList.remove("header__nav-mobile--active");
 });
 
+//quiz
+
 const question = document.querySelector(".quiz__right-question");
 const answers = document.querySelector(".quiz__right-answers");
 const nextBtn = document.querySelector(".quiz__right-next ");
-const prevBtn = document.querySelector(".quiz__right-prev ");
 let questionIndex = 0;
 const answersTotal = {};
 const currentStep = document.querySelector(".quiz__current-step");
@@ -57,6 +58,7 @@ const questionsVariants = [
             "Infiniti",
         ],
     },
+
     {
         questionTitle: "Пробег",
         answers: ["до 50 тыс", "до 100 тыс", "до 150 тыс", "до 200 тыс"],
@@ -69,27 +71,22 @@ const questionsVariants = [
         questionTitle: "Как скоро вы планируете покупку автомобиля?",
         answers: ["в ближайшие 2 недели", "в ближайший месяц", "в ближайшие 3 месяца", "в ближайшие полгода"],
     },
-    {
-        questionTitle: "Выберите подарок",
-        answers: ["./img/gift-1.jpg", "./img/gift-2.jpg", "./img/gift-3.jpg"],
-        descrs: ["Мойка люкс", "Набор автомобилиста", "Скидка 4 тысячи на услугу автоподбора"],
-    },
 ];
 
-totalSteps.textContent = questionsVariants.length - 1;
+totalSteps.textContent = questionsVariants.length;
 
 function updateNextButtonState() {
-    const checkboxes = answers.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked');
+    const checkboxes = answers.querySelectorAll('input[type="radio"]');
     const selectedCheckboxes = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
 
     nextBtn.disabled = selectedCheckboxes.length === 0;
-    prevBtn.disabled = questionIndex === 0;
 }
 
 function displayNextQuestion() {
     const currentQuestion = questionsVariants[questionIndex];
 
     if (!currentQuestion) {
+        // Все вопросы пройдены, можно обработать результат
         console.log("Ответы:", answersTotal);
         nextBtn.setAttribute("disabled", "true");
         return;
@@ -102,6 +99,12 @@ function displayNextQuestion() {
     const answerArea = document.querySelector(".quiz__right-answers");
 
     if (questionIndex === 1) {
+        answerArea.style.gridTemplateColumns = "1fr";
+    } else {
+        answerArea.style.gridTemplateColumns = "repeat(3, 1fr)";
+    }
+
+    if (questionIndex === 1) {
         const radioDiv = document.createElement("div");
         const fakeSelectPreview = document.createElement("div");
         radioDiv.classList.add("fake__select");
@@ -110,33 +113,26 @@ function displayNextQuestion() {
             const answerId = `answer_${answerIndex + 1}`;
             const answerLabel = document.createElement("label");
             const answerCheckbox = document.createElement("input");
-            const fakeCheckbox = document.createElement("span");
+            const fakeCheckbos = document.createElement("span");
             const answerArea = document.querySelector(".quiz__right-answers");
 
-            fakeCheckbox.classList.add("custom-radio");
+            fakeCheckbos.classList.add("custom-radio");
             answerCheckbox.type = "radio";
             answerCheckbox.id = answerId;
             answerCheckbox.classList.add("quiz__right-answer");
             answerCheckbox.value = answerText;
 
             answerLabel.appendChild(answerCheckbox);
-            answerLabel.appendChild(fakeCheckbox);
+            answerLabel.appendChild(fakeCheckbos);
             answerLabel.appendChild(document.createTextNode(answerText));
             currentStep.textContent = questionIndex + 1;
-            quizProgress.textContent = questionsVariants.length - 1 - questionIndex;
+            quizProgress.textContent = questionsVariants.length - questionIndex;
 
             answerCheckbox.addEventListener("change", () => {
                 if (answerCheckbox.checked) {
-                    if (!answersTotal[currentQuestion.questionTitle]) {
-                        answersTotal[currentQuestion.questionTitle] = [answerText];
-                    } else {
-                        answersTotal[currentQuestion.questionTitle].push(answerText);
-                    }
+                    answersTotal[currentQuestion.questionTitle] = answerText;
                 } else {
-                    const index = answersTotal[currentQuestion.questionTitle].indexOf(answerText);
-                    if (index > -1) {
-                        answersTotal[currentQuestion.questionTitle].splice(index, 1);
-                    }
+                    delete answersTotal[currentQuestion.questionTitle];
                 }
                 updateNextButtonState();
             });
@@ -154,81 +150,46 @@ function displayNextQuestion() {
             radioDiv.classList.toggle("fake__select--active");
             fakeSelectPreview.classList.toggle("fake__select-preview--active");
         });
+        // Добавляем общий div с радиокнопками в answers
         answers.appendChild(fakeSelectPreview);
         answers.appendChild(radioDiv);
 
+        // Создаем отдельный инпут текст
         const textInput = document.createElement("input");
+
         textInput.type = "text";
         textInput.placeholder = "Например BQ9";
         textInput.classList.add("quiz__input-answer");
-        textInput.addEventListener("input", (event) => {
-            answersTotal[currentQuestion.questionTitle] = event.target.value;
-            updateNextButtonState();
-        });
         answers.appendChild(textInput);
 
         answerArea.style.gridTemplateColumns = "1fr";
-    } else if (questionIndex === questionsVariants.length - 1) {
-        currentQuestion.answers.forEach((imageUrl, answerIndex) => {
-            const imageDiv = document.createElement("div");
-            const img = document.createElement("img");
-            img.src = imageUrl;
-            img.alt = `Answer ${answerIndex + 1}`;
-            img.setAttribute("data-answer", currentQuestion.descrs[answerIndex]);
-            img.classList.add("quiz__right-img");
-            imageDiv.classList.add("quiz__right-imagewrap");
-
-            const descrP = document.createElement("p");
-            descrP.textContent = currentQuestion.descrs[answerIndex];
-            descrP.classList.add("quiz__right-descr");
-
-            imageDiv.appendChild(img);
-            imageDiv.appendChild(descrP);
-            answers.appendChild(imageDiv);
-        });
-
-        function selectGift() {
-            const gift = document.querySelector(".quiz__right-img");
-            gift.addEventListener("click", () => {
-                gift.classList.toggle("quiz__right-img--active");
-            });
-        }
-
-        selectGift();
-        answerArea.style.gridTemplateColumns = "repeat(3, 1fr)";
     } else {
+        // Создаем радиокнопки
         currentQuestion.answers.forEach((answerText, answerIndex) => {
             const answerId = `answer_${answerIndex + 1}`;
             const answerLabel = document.createElement("label");
             const answerCheckbox = document.createElement("input");
-            const fakeCheckbox = document.createElement("span");
+            const fakeCheckbos = document.createElement("span");
             const answerArea = document.querySelector(".quiz__right-answers");
 
-            fakeCheckbox.classList.add("custom-radio");
+            fakeCheckbos.classList.add("custom-radio");
             answerCheckbox.type = "radio";
             answerCheckbox.id = answerId;
             answerCheckbox.name = "answer";
             answerCheckbox.classList.add("quiz__right-answer");
-            answerCheckbox.value = answerText;
+            answerCheckbox.value = `answer${answerIndex + 1}`;
 
             answerLabel.appendChild(answerCheckbox);
-            answerLabel.appendChild(fakeCheckbox);
+            answerLabel.appendChild(fakeCheckbos);
             answerLabel.appendChild(document.createTextNode(answerText));
             currentStep.textContent = questionIndex + 1;
-            quizProgress.textContent = questionsVariants.length - 1 - questionIndex;
+            quizProgress.textContent = questionsVariants.length - questionIndex;
 
             answerCheckbox.addEventListener("change", () => {
                 if (answerCheckbox.checked) {
-                    if (!answersTotal[currentQuestion.questionTitle]) {
-                        answersTotal[currentQuestion.questionTitle] = [answerText];
-                    } else {
-                        answersTotal[currentQuestion.questionTitle].push(answerText);
-                    }
+                    answersTotal[currentQuestion.questionTitle] = answerText;
                 } else {
-                    const index = answersTotal[currentQuestion.questionTitle].indexOf(answerText);
-                    if (index > -1) {
-                        answersTotal[currentQuestion.questionTitle].splice(index, 1);
-                    }
+                    delete answersTotal[currentQuestion.questionTitle];
                 }
                 updateNextButtonState();
             });
@@ -251,23 +212,16 @@ nextBtn.addEventListener("click", () => {
     progressBar();
 });
 
-prevBtn.addEventListener("click", () => {
-    if (questionIndex > 0) {
-        questionIndex--;
-        displayNextQuestion();
-        progressBar();
-    }
-});
-
 function progressBar() {
     const index = questionIndex;
     const progress = document.querySelector(".quiz__right-progress");
     const fullWidth = progress.offsetWidth;
     const progressInner = document.querySelector(".quiz__right-filler");
-    const progressFraction = fullWidth / 5;
+    const progressFraction = fullWidth / questionsVariants.length;
     progressInner.style.width = `${progressFraction * index}px`;
 }
 
+// Инициализация
 displayNextQuestion();
 progressBar();
 
@@ -280,7 +234,7 @@ function outerClick(event) {
             fakeSelect.classList.remove("fake__select--active");
             answerArea.classList.remove("fake__select-preview--active");
 
-            const checkedRadio = document.querySelector('.quiz__right-answers input[type="checkbox"]:checked, input[type="radio"]:checked');
+            const checkedRadio = document.querySelector('.quiz__right-answers input[type="radio"]:checked');
             if (checkedRadio) {
                 const selectedValue = checkedRadio.value;
                 answerArea.setAttribute("data-placeholder", selectedValue);
