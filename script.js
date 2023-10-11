@@ -413,18 +413,19 @@ async function sendObj(dataToSend) {
         });
 
         if (response.ok) {
-            const popupWrapper = document.querySelector(".popup");
-            const popupModal = document.querySelector(".popup__content");
+            // const popupWrapper = document.querySelector(".popup");
+            // const popupModal = document.querySelector(".popup__content");
 
-            popupWrapper.classList.add("popup--active");
-            popupModal.classList.add("popup__content--active");
+            // popupWrapper.classList.add("popup--active");
+            // popupModal.classList.add("popup__content--active");
 
-            const closeBtn = document.querySelector(".popup__content-btn");
-            closeBtn.addEventListener("click", () => {
-                popupWrapper.classList.remove("popup--active");
-                popupModal.classList.remove("popup__content--active");
-                location.reload();
-            });
+            // const closeBtn = document.querySelector(".popup__content-btn");
+            // closeBtn.addEventListener("click", () => {
+            //     popupWrapper.classList.remove("popup--active");
+            //     popupModal.classList.remove("popup__content--active");
+            //     location.reload();
+            // });
+            window.location.href = "./thx-page.html";
             console.log("Данные успешно отправлены.");
         } else {
             console.error("Ошибка при отправке данных. Статус:", response.status);
