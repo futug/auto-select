@@ -1,4 +1,9 @@
-/* Mont-Bold */
+@font-face {
+    font-family: "FallbackFont";
+    src: local("Arial"), local("Helvetica"), sans-serif;
+    /* Укажите здесь любой шрифт, который есть на устройстве пользователя, например, Arial или Helvetica */
+}
+
 @font-face {
     font-family: "Mont-Bold";
     src: url("fonts/Mont-Bold.woff2") format("woff2"), url("fonts/Mont-Bold.ttf") format("ttf");
@@ -87,6 +92,8 @@ body {
     padding: 0 53px;
     color: var(--primary-text-dark);
     scroll-behavior: smooth;
+
+    font-family: "FallbackFont", sans-serif;
 }
 
 @media (max-width: 480px) {
