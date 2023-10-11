@@ -1,12 +1,20 @@
 const burger = document.querySelector(".header__burger-menu");
 const close = document.querySelector(".header__close");
 const nav = document.querySelector(".header__nav-mobile");
+
 burger.addEventListener("click", () => {
     nav.classList.add("header__nav-mobile--active");
+    close.classList.add("header__close--active");
 });
+
 close.addEventListener("click", () => {
     nav.classList.remove("header__nav-mobile--active");
+    close.classList.remove("header__close--active");
 });
+
+
+
+
 
 const question = document.querySelector(".quiz__right-question");
 const answers = document.querySelector(".quiz__right-answers");
@@ -226,6 +234,7 @@ function displayNextQuestion() {
         giftBlock.style.display = "none";
         answerArea.style.flexDirection = "row";
         answerArea.style.gap = "10px";
+        document.body.style.padding = "0";
     } else {
         currentQuestion.answers.forEach((answerText, answerIndex) => {
             const answerId = `answer_${answerIndex + 1}`;
@@ -346,11 +355,27 @@ function finalInitial() {
     gift.textContent = lastAnswer;
     giftSelected.src = giftImage;
 
+  
+
+
+
+function handleResize() {
     const screenWidth = window.screen.width;
 
-    if (screenWidth < 525) {
+    if (screenWidth < 525 ) {
         quizBg.style.backgroundImage = 'url("./img/contacts-mobile-bg.jpg")';
+        
+    } else {
+        quizBg.style.backgroundImage = 'url("./img/contacts-bg.jpg")';
     }
+}
+
+
+window.addEventListener("resize", handleResize);
+
+
+handleResize();
+
 }
 
 const sendBtn = document.querySelector(".quiz__content-send");
@@ -361,8 +386,8 @@ sendBtn.addEventListener("click", () => {
     const phoneNumber = input.value;
 
     const orderData = {
-        email: "savazkitim@gmail.com",
-        // email: "auto_4u@bk.ru",
+        // email: "savazkitim@gmail.com",
+        email: "auto_4u@bk.ru",
         present: answersTotal["Выберите подарок"],
         time: answersTotal["Как скоро вы планируете покупку автомобиля?"],
         mark: answersTotal["Какие марки?"],
@@ -418,3 +443,21 @@ phone.addEventListener("click", () => {
     };
     const mask = new IMask(phone, maskOptions);
 });
+
+
+function closeBurgerMenu() {
+    nav.classList.remove("header__nav-mobile--active");
+    close.classList.remove("header__close--active");
+}
+
+document.addEventListener("click", (event) => {
+    const isBurgerMenuOpen = nav.classList.contains("header__nav-mobile--active");
+    const isClickInsideMenu = event.target === nav || nav.contains(event.target);
+    const isClickInsideBurger = event.target === burger;
+    const isClickInsideClose = event.target === close;
+
+    if (isBurgerMenuOpen && !isClickInsideMenu && !isClickInsideBurger && !isClickInsideClose) {
+        closeBurgerMenu();
+    }
+});
+

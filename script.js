@@ -355,7 +355,8 @@ function finalInitial() {
     gift.textContent = lastAnswer;
     giftSelected.src = giftImage;
 
-    const screenWidth = window.screen.width;
+  
+
 
 
 function handleResize() {
@@ -385,8 +386,8 @@ sendBtn.addEventListener("click", () => {
     const phoneNumber = input.value;
 
     const orderData = {
-        email: "savazkitim@gmail.com",
-        // email: "auto_4u@bk.ru",
+        // email: "savazkitim@gmail.com",
+        email: "auto_4u@bk.ru",
         present: answersTotal["Выберите подарок"],
         time: answersTotal["Как скоро вы планируете покупку автомобиля?"],
         mark: answersTotal["Какие марки?"],
@@ -442,3 +443,21 @@ phone.addEventListener("click", () => {
     };
     const mask = new IMask(phone, maskOptions);
 });
+
+
+function closeBurgerMenu() {
+    nav.classList.remove("header__nav-mobile--active");
+    close.classList.remove("header__close--active");
+}
+
+document.addEventListener("click", (event) => {
+    const isBurgerMenuOpen = nav.classList.contains("header__nav-mobile--active");
+    const isClickInsideMenu = event.target === nav || nav.contains(event.target);
+    const isClickInsideBurger = event.target === burger;
+    const isClickInsideClose = event.target === close;
+
+    if (isBurgerMenuOpen && !isClickInsideMenu && !isClickInsideBurger && !isClickInsideClose) {
+        closeBurgerMenu();
+    }
+});
+
