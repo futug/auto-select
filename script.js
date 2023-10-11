@@ -191,7 +191,7 @@ function displayNextQuestion() {
 
         answers.appendChild(textInput);
 
-        answerArea.style.gridTemplateColumns = "1fr";
+        answerArea.style.flexDirection = "column";
     } else if (questionIndex === questionsVariants.length - 1) {
         currentQuestion.answers.forEach((imageUrl, answerIndex) => {
             const imageDiv = document.createElement("div");

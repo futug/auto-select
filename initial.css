@@ -27,6 +27,7 @@
     src: url("fonts/Mont-Regular.woff2") format("woff2"), url("fonts/Mont-Regular.ttf") format("ttf");
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 /* Mont-SemiBold */
