@@ -361,8 +361,8 @@ sendBtn.addEventListener("click", () => {
     const phoneNumber = input.value;
 
     const orderData = {
-        // email: "savazkitim@gmail.com",
-        email: "auto_4u@bk.ru",
+        email: "savazkitim@gmail.com",
+        // email: "auto_4u@bk.ru",
         present: answersTotal["Выберите подарок"],
         time: answersTotal["Как скоро вы планируете покупку автомобиля?"],
         mark: answersTotal["Какие марки?"],
