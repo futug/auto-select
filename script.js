@@ -79,23 +79,13 @@ const questionsVariants = [
 
 totalSteps.textContent = questionsVariants.length - 1;
 
-// function updateNextButtonState() {
-//     const checkboxes = answers.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked');
-//     const selectedCheckboxes = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
-
-//     nextBtn.disabled = selectedCheckboxes.length === 0;
-//     prevBtn.disabled = questionIndex === 0;
-// }
-
 function updateNextButtonState() {
-    const checkboxes = answers.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked');
+    const checkboxes = answers.querySelectorAll('input[type="checkbox"]:checked, input[type="checkbox"]:checked');
     const selectedCheckboxes = Array.from(checkboxes).filter((checkbox) => checkbox.checked);
 
     if (questionIndex === questionsVariants.length - 1) {
-        // Если это последний вопрос, и выбран подарок, то кнопка "Далее" доступна
         nextBtn.disabled = selectedCheckboxes.length === 0 && !answersTotal[questionsVariants[questionIndex].questionTitle];
     } else {
-        // Для остальных вопросов
         nextBtn.disabled = selectedCheckboxes.length === 0;
     }
 
@@ -131,7 +121,7 @@ function displayNextQuestion() {
             const answerArea = document.querySelector(".quiz__right-answers");
 
             fakeCheckbox.classList.add("custom-radio");
-            answerCheckbox.type = "radio";
+            answerCheckbox.type = "checkbox";
             answerCheckbox.id = answerId;
             answerCheckbox.classList.add("quiz__right-answer");
             answerCheckbox.value = answerText;
@@ -179,12 +169,18 @@ function displayNextQuestion() {
         textInput.placeholder = "Например BQ9";
         textInput.classList.add("quiz__input-answer");
         textInput.addEventListener("input", (event) => {
-            answersTotal[currentQuestion.questionTitle] = event.target.value;
+            const modelValue = event.target.value;
+
+            const selectedCheckboxes = Array.from(document.querySelectorAll(".quiz__right-answer:checked"));
+            const selectedBrands = selectedCheckboxes.map((checkbox) => checkbox.value);
+            const combinedValue = [...selectedBrands, modelValue];
+            answersTotal[currentQuestion.questionTitle] = combinedValue;
+
             updateNextButtonState();
         });
 
         const firstParagraph = document.createElement("p");
-        firstParagraph.textContent = "Вы можете выбрать несколько интерисующих марок";
+        firstParagraph.textContent = "Вы можете выбрать несколько интересующих марок";
         firstParagraph.classList.add("quiz__first-par");
         answers.appendChild(firstParagraph);
 
@@ -222,10 +218,7 @@ function displayNextQuestion() {
                 });
                 img.classList.add("quiz__right-img--active");
 
-                // Добавляем выбранный подарок в объект ответов
                 answersTotal[currentQuestion.questionTitle] = [currentQuestion.descrs[answerIndex]];
-
-                // Проверяем состояние кнопки "Далее"
                 updateNextButtonState();
             });
         });
@@ -242,7 +235,7 @@ function displayNextQuestion() {
             const answerArea = document.querySelector(".quiz__right-answers");
 
             fakeCheckbox.classList.add("custom-radio");
-            answerCheckbox.type = "radio";
+            answerCheckbox.type = "checkbox";
             answerCheckbox.id = answerId;
             answerCheckbox.name = "answer";
             answerCheckbox.classList.add("quiz__right-answer");
@@ -322,7 +315,7 @@ function outerClick(event) {
             fakeSelect.classList.remove("fake__select--active");
             answerArea.classList.remove("fake__select-preview--active");
 
-            const checkedRadio = document.querySelector('.quiz__right-answers input[type="checkbox"]:checked, input[type="radio"]:checked');
+            const checkedRadio = document.querySelector('.quiz__right-answers input[type="checkbox"]:checked, input[type="checkbox"]:checked');
             if (checkedRadio) {
                 const selectedValue = checkedRadio.value;
                 answerArea.setAttribute("data-placeholder", selectedValue);
@@ -362,7 +355,7 @@ sendBtn.addEventListener("click", () => {
     const phoneNumber = input.value;
 
     const orderData = {
-        email: "savazkitim@gmail.com",
+        email: "auto_4u@bk.ru",
         present: answersTotal["Выберите подарок"],
         time: answersTotal["Как скоро вы планируете покупку автомобиля?"],
         mark: answersTotal["Какие марки?"],
@@ -373,9 +366,8 @@ sendBtn.addEventListener("click", () => {
     };
 
     console.log(orderData);
-    // const finalData = { ...orderData };
 
-    // sendObj(orderData);
+    sendObj(orderData);
 });
 
 async function sendObj(dataToSend) {
@@ -409,3 +401,13 @@ async function sendObj(dataToSend) {
         console.error("Произошла ошибка:", error);
     }
 }
+
+const phone = document.querySelector(".quiz__content-phone");
+
+phone.addEventListener("click", () => {
+    const maskOptions = {
+        mask: "+7(000)000-00-00",
+        lazy: false,
+    };
+    const mask = new IMask(phone, maskOptions);
+});

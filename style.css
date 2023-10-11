@@ -747,15 +747,15 @@
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-.quiz__right-answers input[type=radio] {
+.quiz__right-answers input[type=checkbox] {
   display: none;
 }
-.quiz__right-answers input[type=radio]:checked + .custom-radio {
+.quiz__right-answers input[type=checkbox]:checked + .custom-radio {
   background-color: var(--secondary-text-light);
   -webkit-box-shadow: 0px 4px 52px rgba(0, 0, 0, 0.25);
           box-shadow: 0px 4px 52px rgba(0, 0, 0, 0.25);
 }
-.quiz__right-answers input[type=radio]:checked + .custom-radio::after {
+.quiz__right-answers input[type=checkbox]:checked + .custom-radio::after {
   content: "";
   display: block;
   width: 16px;
