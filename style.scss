@@ -508,6 +508,37 @@
         height: 165px;
         border-radius: 33px;
         background-color: #fff;
+        background: url("./img/manager-block-bg.webp") no-repeat center/cover;
+
+        @supports not (background-image: url("./img/manager-block-bg.webp")) {
+            background: url("./img/manager-block-bg.jpg") no-repeat center/cover;
+        }
+        position: relative;
+
+        & img {
+            position: absolute;
+            bottom: 0;
+        }
+
+        &-descr {
+            position: absolute;
+            top: 50px;
+            right: 19px;
+            max-width: 121px;
+
+            & p:first-child {
+                font-family: "MullerBold";
+                font-size: 14px;
+                line-height: 147.5%;
+                color: var(--primary-accent-color);
+            }
+
+            & p:last-child {
+                font-family: "Mont-Light";
+                font-size: 12px;
+                line-height: 125%;
+            }
+        }
     }
 
     &__left-gift {

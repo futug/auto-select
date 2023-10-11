@@ -71,6 +71,7 @@
 }
 html {
     line-height: 1.15; /* 1 */
+    scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%; /* 2 */
 }
 
@@ -85,6 +86,7 @@ body {
     margin: 0;
     padding: 0 53px;
     color: var(--primary-text-dark);
+    scroll-behavior: smooth;
 }
 
 @media (max-width: 480px) {

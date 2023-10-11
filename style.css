@@ -582,6 +582,34 @@
   height: 165px;
   border-radius: 33px;
   background-color: #fff;
+  background: url("./img/manager-block-bg.webp") no-repeat center/cover;
+  position: relative;
+}
+@supports not (background-image: url("./img/manager-block-bg.webp")) {
+  .quiz__photo {
+    background: url("./img/manager-block-bg.jpg") no-repeat center/cover;
+  }
+}
+.quiz__photo img {
+  position: absolute;
+  bottom: 0;
+}
+.quiz__photo-descr {
+  position: absolute;
+  top: 50px;
+  right: 19px;
+  max-width: 121px;
+}
+.quiz__photo-descr p:first-child {
+  font-family: "MullerBold";
+  font-size: 14px;
+  line-height: 147.5%;
+  color: var(--primary-accent-color);
+}
+.quiz__photo-descr p:last-child {
+  font-family: "Mont-Light";
+  font-size: 12px;
+  line-height: 125%;
 }
 .quiz__left-gift {
   padding: 0 33px 27px 27px;

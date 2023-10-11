@@ -13,24 +13,26 @@
             <div class="header__nav">
                 <div class="header__left-side">
                     <div class="header__logo">
-                        <a href="">
-                            <img src="./img/svg/companyLogo.svg" alt="company logo" />
-                        </a>
+                        <img src="./img/svg/companyLogo.svg" alt="company logo" />
                     </div>
                     <div class="header__city">
-                        <img src="./img/svg/cityGroup.svg" alt="city group icon" width="92" height="51" />
+                        <picture>
+                            <source srcset="./img/cityGroup.webp" type="image/webp" />
+                            <source srcset="./img/cityGroup.png" type="image/png" />
+                            <img src="./img/city.png" alt="city" width="92" height="51" />
+                        </picture>
                         <p class="header__city-descr">Подбор по Спб и МСК по <span>договору точно в срок</span></p>
                     </div>
                 </div>
                 <div class="header__right-side">
                     <div class="header__contacts">
-                        <a href="" class="header__contacts-link">
+                        <a href="https://www.youtube.com/@auto_for_you" target="_blank" class="header__contacts-link">
                             <img src="./img/svg/youtubeIcon.svg" alt="youtube icon" width="24" height="19" />
                         </a>
-                        <a href="" class="header__contacts-link">
+                        <a href="https://vk.com/auto_for_you" target="_blank" class="header__contacts-link">
                             <img src="./img/svg/vkIcon.svg" alt="vkontakte icon" width="24" height="24" />
                         </a>
-                        <a href="" class="header__contacts-link">
+                        <a href="https://wa.me/89219555570?text=" target="_blank" class="header__contacts-link">
                             <img src="./img/svg/whatsappIcon.svg" alt="youtube icon" width="20" height="20" />
                         </a>
                     </div>
@@ -75,7 +77,11 @@
         <main>
             <section class="hero">
                 <div class="hero__content content-container">
-                    <img src="./img/svg/team.svg" alt="team photos" class="hero__content-team" />
+                    <picture>
+                        <source srcset="./img/team.webp" type="image/webp" />
+                        <source srcset="./img/team.png" type="image/png" />
+                        <img src="./img/team.png" alt="team photo" class="hero__content-team" />
+                    </picture>
                     <p class="hero__content-descr">
                         Подберем лучший авто с пробегом в вашем ценовом сегменте,<br />
                         <span>с гарантией технической исправности</span>
@@ -83,7 +89,7 @@
                     <h1 class="hero__content-title">СОБИРАЕТЕСЬ КУПИТЬ МАШИНУ С ПРОБЕГОМ И <span>БОИТЕСЬ ОБМАНА?</span></h1>
                     <div class="hero__content-cta">
                         <p class="hero__content-sub">Тимофей Гусев <span>Подобрал 200.000 машин</span></p>
-                        <a href="" class="hero__content-button"> Пройдите тест </a>
+                        <a href="#quiz" class="hero__content-button"> Пройдите тест </a>
                         <div class="hero__content-advantages">
                             <div class="hero__content-advantages-item">
                                 <div class="hero__content-advantages-icon">
@@ -121,7 +127,7 @@
                     </div>
                 </div>
             </section>
-            <section class="quiz">
+            <section class="quiz" id="quiz">
                 <div class="quiz__content quiz-container">
                     <div class="quiz__content-quiz">
                         <h2 class="quiz__content-title">
@@ -134,7 +140,17 @@
                         <div class="quiz__content-body">
                             <div class="quiz__content-left">
                                 <div class="quiz__left-top">
-                                    <div class="quiz__photo"></div>
+                                    <div class="quiz__photo">
+                                        <picture>
+                                            <source srcset="./img/manager.webp" type="image/webp" />
+                                            <source srcset="./img/manager.png" type="image/png" />
+                                            <img src="./img/manager.png" alt="quiz photo" width="188" height="183" />
+                                        </picture>
+                                        <div class="quiz__photo-descr">
+                                            <p>Андрей Иванов</p>
+                                            <p>Ваш личный специалист по подбору</p>
+                                        </div>
+                                    </div>
                                     <div class="quiz__left-top-text">
                                         <img src="./img/svg/quoteIcon.svg" alt="quoteIcon" width="30" height="30" />
                                         <p class="quiz__left-top-text-title">Заполните вопросы, и я помогу подобрать вам лучший авто</p>
