@@ -224,8 +224,8 @@ function displayNextQuestion() {
         });
         const giftBlock = document.querySelector(".quiz__right-gift-descr");
         giftBlock.style.display = "none";
-        answerArea.style.gridTemplateColumns = "repeat(3, 1fr)";
-        answerArea.style.gap = "20px";
+        answerArea.style.flexDirection = "row";
+        answerArea.style.gap = "10px";
     } else {
         currentQuestion.answers.forEach((answerText, answerIndex) => {
             const answerId = `answer_${answerIndex + 1}`;
@@ -345,6 +345,12 @@ function finalInitial() {
     const lastAnswer = lastAnswerArray ? lastAnswerArray[lastAnswerArray.length - 1] : "";
     gift.textContent = lastAnswer;
     giftSelected.src = giftImage;
+
+    const screenWidth = window.screen.width;
+
+    if (screenWidth < 525) {
+        quizBg.style.backgroundImage = 'url("./img/contacts-mobile-bg.jpg")';
+    }
 }
 
 const sendBtn = document.querySelector(".quiz__content-send");
