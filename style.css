@@ -1240,11 +1240,32 @@
 .final-sub {
   margin-top: 147px;
 }
+@media (max-width: 480px) {
+  .final-sub {
+    margin-top: 406px;
+    font-size: 14px;
+    color: var(--secondary-text-light);
+  }
+  .final-sub img {
+    display: none;
+  }
+}
 
 .final-title {
   margin-top: 29px;
   max-width: 559px;
   font-size: 32px;
+}
+@media (max-width: 480px) {
+  .final-title {
+    max-width: 329px;
+    margin-top: 17px;
+    font-size: 25px;
+    color: var(--secondary-text-light);
+  }
+  .final-title span {
+    color: var(--secondary-text-light);
+  }
 }
 
 .quiz__content-final-input {
@@ -1257,6 +1278,18 @@
   border-radius: 8.125px;
   position: relative;
   margin-top: 39px;
+}
+@media (max-width: 480px) {
+  .quiz__content-final-input {
+    max-width: 329px;
+    height: 82px;
+    background: #ffffff;
+    border: 3.25px solid #ffffff;
+    -webkit-box-shadow: inset 0px 0px 32.5px rgba(0, 0, 0, 0.14);
+            box-shadow: inset 0px 0px 32.5px rgba(0, 0, 0, 0.14);
+    border-radius: 8.125px;
+    margin-top: 19px;
+  }
 }
 .quiz__content-final-input input {
   width: 100%;
@@ -1300,6 +1333,11 @@
 .quiz__content-final-input p span {
   color: #25cd45;
 }
+@media (max-width: 480px) {
+  .quiz__content-final-input p {
+    font-size: 15px;
+  }
+}
 
 .quiz__content-send {
   background: #f15a29;
@@ -1326,6 +1364,12 @@
   display: block;
   max-width: 300px;
 }
+@media (max-width: 480px) {
+  .quiz__content-send {
+    font-size: 16px;
+    padding: 17px 86px;
+  }
+}
 
 .quiz__content-gift-preview {
   display: -webkit-box;
@@ -1340,7 +1384,11 @@
       -ms-flex-align: center;
           align-items: center;
   margin-top: 20px;
-  margin-bottom: 118px;
+}
+@media (max-width: 480px) {
+  .quiz__content-gift-preview {
+    background-color: transparent;
+  }
 }
 .quiz__content-gift-preview img {
   max-width: 46px;
@@ -1434,4 +1482,20 @@
   z-index: 2;
   border: none;
   cursor: pointer;
+}
+
+.quiz__content-final-wrapper {
+  margin-bottom: 118px;
+}
+@media (max-width: 480px) {
+  .quiz__content-final-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    margin-bottom: 86px;
+  }
 }
