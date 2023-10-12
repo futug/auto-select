@@ -24,7 +24,8 @@ let questionIndex = 0;
 const answersTotal = {};
 const currentStep = document.querySelector(".quiz__current-step");
 const totalSteps = document.querySelector(".quiz__total-steps");
-const quizProgress = document.querySelector(".quiz__least-questions");
+const quizProgress = document.querySelectorAll(".quiz__least-questions");
+const questionNoun = document.querySelectorAll(".quiz__question-noun");
 let giftImage = "";
 
 const questionsVariants = [
@@ -138,7 +139,19 @@ function displayNextQuestion() {
             answerLabel.appendChild(fakeCheckbox);
             answerLabel.appendChild(document.createTextNode(answerText));
             currentStep.textContent = questionIndex + 1;
-            quizProgress.textContent = questionsVariants.length - 1 - questionIndex;
+            quizProgress.forEach((progressElement) => {
+                progressElement.textContent = questionsVariants.length - 1 - questionIndex;
+            });
+            questionNoun.forEach((questionElement) => {
+                if (questionIndex === 0) {
+                    questionElement.textContent = "вопросов";
+                } else if (questionIndex === 1 || questionIndex === 2 || questionIndex === 3) {
+                    questionElement.textContent = "вопроса";
+                } else {
+                    questionElement.textContent = "вопрос";
+                }
+            })
+            
 
             answerCheckbox.addEventListener("change", () => {
                 if (answerCheckbox.checked) {
@@ -235,6 +248,7 @@ function displayNextQuestion() {
         answerArea.style.flexDirection = "row";
         answerArea.style.gap = "10px";
         document.body.style.padding = "0";
+        answerArea.style.justifyContent = "center";
     } else {
         currentQuestion.answers.forEach((answerText, answerIndex) => {
             const answerId = `answer_${answerIndex + 1}`;
@@ -254,7 +268,18 @@ function displayNextQuestion() {
             answerLabel.appendChild(fakeCheckbox);
             answerLabel.appendChild(document.createTextNode(answerText));
             currentStep.textContent = questionIndex + 1;
-            quizProgress.textContent = questionsVariants.length - 1 - questionIndex;
+            quizProgress.forEach((progressElement) => {
+                progressElement.textContent = questionsVariants.length - 1 - questionIndex;
+            });
+            questionNoun.forEach((questionElement) => {
+                if (questionIndex === 0) {
+                    questionElement.textContent = "вопросов";
+                } else if (questionIndex === 1 || questionIndex === 2 || questionIndex === 3) {
+                    questionElement.textContent = "вопроса";
+                } else {
+                    questionElement.textContent = "вопрос";
+                }
+            })
 
             answerCheckbox.addEventListener("change", () => {
                 if (answerCheckbox.checked) {
@@ -271,7 +296,7 @@ function displayNextQuestion() {
                 }
                 updateNextButtonState();
             });
-
+            
             answers.appendChild(answerLabel);
             if (questionIndex === 4) {
                 answerArea.style.gridTemplateColumns = "1fr";
@@ -361,10 +386,8 @@ function finalInitial() {
 
 function handleResize() {
     const screenWidth = window.screen.width;
-
     if (screenWidth < 525 ) {
         quizBg.style.backgroundImage = 'url("./img/contacts-mobile-bg.jpg")';
-        
     } else {
         quizBg.style.backgroundImage = 'url("./img/contacts-bg.jpg")';
     }

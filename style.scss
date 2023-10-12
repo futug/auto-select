@@ -1141,6 +1141,7 @@ h6 {
         }
         &-progress-wrapper {
             width: 100%;
+           
         }
 
         &-progress {
@@ -1191,15 +1192,24 @@ h6 {
 
             &--mobile {
                 display: none;
+                margin-bottom: 8px;
                 @media (max-width: 768px) {
                     font-family: "Mont-Regular";
                     display: block;
                     width: 100%;
                     font-size: 12px;
-                    line-height: 147.5%;
+                    line-height: 110%;
 
                     & span {
                         font-size: 12px;
+                    }
+                }
+
+                @media (max-width: 392px) {
+                    font-size: 10px;
+
+                    & span {
+                        font-size: 10px;
                     }
                 }
             }
@@ -1241,6 +1251,10 @@ h6 {
                 gap: 15px;
                 align-items: center;
                 cursor: pointer;
+
+                @media (max-width: 525px) {
+                    font-size: 15px;
+                }
             }
 
             .custom-radio {
@@ -1297,7 +1311,8 @@ h6 {
             font-family: "RoadRadio";
             font-size: 16px;
             letter-spacing: 0.04em;
-            color: rgba(24, 39, 53, 0.42);
+            color: var(--secondary-text-light);
+
             cursor: pointer;
 
             &--active {
@@ -1309,6 +1324,7 @@ h6 {
             &:disabled {
                 background-color: #efefef;
                 box-shadow: none;
+                color: rgba(24, 39, 53, 0.42);
             }
 
             @media (max-width: 768px) {
@@ -1319,7 +1335,7 @@ h6 {
                 line-height: 145%;
                 text-align: center;
                 letter-spacing: 0.04em;
-                color: rgba(24, 39, 53, 0.42);
+                
             }
 
             @media (max-width: 450px) {
@@ -1602,6 +1618,13 @@ h6 {
             pointer-events: none;
         }
         &:not(:valid) + p {
+            opacity: 1;
+          
+            transition: all 0.3s ease-in-out;
+            pointer-events: none;
+        }
+
+        &:valid + p {
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease-in-out;
@@ -1631,6 +1654,10 @@ h6 {
         @media (max-width: 480px) {
             font-size: 15px;
         }
+
+        @media (max-width: 450px) {
+            font-size: 13px;
+        }
     }
 }
 
@@ -1653,6 +1680,7 @@ h6 {
     max-height: 126px;
     display: block;
     margin-top: 20px;
+    cursor: pointer;
 
     & span {
         display: block;
@@ -1663,6 +1691,15 @@ h6 {
         font-size: 16px;
         padding: 17px 83px;
         max-width: 329px;
+    }
+
+    @media (max-width: 450px) {
+        font-size: 14px;
+        padding: 13px 70px;
+    }
+
+    @media (max-width: 400px) {
+        padding: 14px 35px;
     }
 }
 
@@ -1705,67 +1742,7 @@ h6 {
     display: none;
 }
 
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    pointer-events: none;
-    opacity: 0;
-    transition: all 0.6s ease-in-out;
-    transition-delay: 0.3s;
-    &--active {
-        pointer-events: all;
-        opacity: 1;
-    }
 
-    &__content {
-        padding: 1rem;
-        background-color: #fff;
-        transform: translateX(-100%);
-        opacity: 0;
-        transition: all 0.3s ease-in-out;
-        transition-delay: 0.9s;
-        &--active {
-            transform: translateX(0);
-            opacity: 1;
-        }
-
-        &-text {
-            font-family: "Mont-SemiBold";
-            font-style: normal;
-            font-weight: 700;
-            font-size: 14px;
-            line-height: 145%;
-            color: var(--primary-text-dark);
-            margin-bottom: 20px;
-        }
-
-        &-btn {
-            display: block;
-            background: var(--primary-accent-color);
-            box-shadow: inset 0px 0px 51px 6px #ff9674;
-            border-radius: 5px;
-            padding: 10px 20px;
-            font-family: "RoadRadio";
-            font-size: 14px;
-            line-height: 145%;
-            letter-spacing: 0.04em;
-            text-decoration: none;
-            color: var(--secondary-text-light);
-            position: relative;
-            z-index: 2;
-            border: none;
-            cursor: pointer;
-        }
-    }
-}
 
 .quiz__content-final-wrapper {
     margin-bottom: 118px;
@@ -1781,4 +1758,9 @@ h6 {
     display: flex;
     align-items: center;
     justify-content: center;
+
+     .hero__content-button {
+        text-align: center;
+        padding: 11px 35px;
+     }
 }
