@@ -464,6 +464,16 @@ async function sendObj(dataToSend) {
     }
 }
 
+// const phone = document.querySelector(".quiz__content-phone");
+
+// phone.addEventListener("click", () => {
+//     const maskOptions = {
+//         mask: "+7(000)000-00-00",
+//         lazy: false,
+//     };
+//     const mask = new IMask(phone, maskOptions);
+// });
+
 const phone = document.querySelector(".quiz__content-phone");
 
 phone.addEventListener("click", () => {
@@ -472,7 +482,16 @@ phone.addEventListener("click", () => {
         lazy: false,
     };
     const mask = new IMask(phone, maskOptions);
+
+    // Установить позицию курсора на 3-ю позицию (первая цифра номера после +7)
+    const cursorPosition = 3; // Индекс позиции (считается с 0)
+    
+    // Проверка на поддержку метода setSelectionRange
+    if (phone.setSelectionRange) {
+        phone.setSelectionRange(cursorPosition, cursorPosition);
+    }
 });
+
 
 
 function closeBurgerMenu() {
