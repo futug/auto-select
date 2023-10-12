@@ -408,6 +408,12 @@ sendBtn.addEventListener("click", () => {
     const input = inputBlock.querySelector("input");
     const phoneNumber = input.value;
 
+    const preloaderWrapper = document.querySelector(".preloader__wrapper");
+    const preloader = document.querySelector(".lds-ring");
+
+    preloaderWrapper.classList.add("preloader__wrapper--active");
+    preloader.classList.add("lds-ring--active");
+
     const orderData = {
         // email: "savazkitim@gmail.com",
         email: "auto_4u@bk.ru",
